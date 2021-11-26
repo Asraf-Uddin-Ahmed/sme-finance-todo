@@ -6,4 +6,6 @@ public interface TodoTaskService {
 
 	TodoTask save(TodoTask todoTask);
 
+	TodoTask getById(Integer id);
+
 }
