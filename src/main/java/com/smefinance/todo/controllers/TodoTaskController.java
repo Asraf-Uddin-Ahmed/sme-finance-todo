@@ -5,7 +5,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,10 +34,17 @@ public class TodoTaskController {
 	
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public TodoTaskResponse saveTodoTask(@Valid @RequestBody TodoTaskRequest request) {
+	public TodoTaskResponse createTodoTask(@RequestBody @Valid TodoTaskRequest request) {
 		TodoTask todoTask = this.todoTaskMapper.getEntity(request);
 		todoTask = this.todoTaskService.save(todoTask);
 		return this.todoTaskMapper.getResponse(todoTask);
 	}
 
+	@PutMapping("/{id}")
+	public TodoTaskResponse updateTodoTask(@PathVariable int id, @RequestBody @Valid TodoTaskRequest request) {
+		TodoTask todoTask = this.todoTaskService.getById(id);
+		this.todoTaskMapper.loadEntity(request, todoTask);
+		todoTask = this.todoTaskService.save(todoTask);
+		return this.todoTaskMapper.getResponse(todoTask);
+	}
 }

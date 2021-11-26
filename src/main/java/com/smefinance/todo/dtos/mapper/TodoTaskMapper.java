@@ -10,4 +10,6 @@ public interface TodoTaskMapper {
 
 	TodoTaskResponse getResponse(TodoTask entity);
 
+	void loadEntity(TodoTaskRequest request, TodoTask entity);
+
 }

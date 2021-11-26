@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,4 +53,15 @@ public class TodoTask {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified_at", nullable = false, length = 19)
 	private Date modifiedAt;
+	
+	@PrePersist
+	protected void onCreate() {
+		createdAt = new Date();
+		modifiedAt = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		modifiedAt = new Date();
+	}
 }

@@ -25,6 +25,11 @@ public class TodoTaskMapperImpl implements TodoTaskMapper {
 	}
 	
 	@Override
+	public void loadEntity(final TodoTaskRequest request, final TodoTask entity) {
+		this.modelMapperStrict.map(request, entity);
+	}
+	
+	@Override
 	public TodoTaskResponse getResponse(final TodoTask entity) {
 		return this.modelMapperStrict.map(entity, TodoTaskResponse.class);
 	}
