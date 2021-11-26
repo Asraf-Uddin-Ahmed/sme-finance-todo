@@ -19,7 +19,4 @@ public class TodoTaskRequest {
 	@NotNull
 	private PriorityType priority;
 	
-	@NotNull
-	private TaskStatus status;
-	
 }
