@@ -17,8 +17,6 @@ import com.smefinance.todo.dtos.response.TodoTaskResponse;
 import com.smefinance.todo.entities.TodoTask;
 import com.smefinance.todo.services.TodoTaskService;
 
-import lombok.extern.log4j.*;
-
 @RestController
 @RequestMapping("/todo-tasks")
 public class TodoTaskController {
@@ -34,7 +32,7 @@ public class TodoTaskController {
 	
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public TodoTaskResponse saveTodoTask(@RequestBody @Valid TodoTaskRequest request) {
+	public TodoTaskResponse saveTodoTask(@Valid @RequestBody TodoTaskRequest request) {
 		TodoTask todoTask = this.todoTaskMapper.getEntity(request);
 		todoTask = this.todoTaskService.save(todoTask);
 		return this.todoTaskMapper.getResponse(todoTask);
