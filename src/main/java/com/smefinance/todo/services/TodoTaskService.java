@@ -1,5 +1,7 @@
 package com.smefinance.todo.services;
 
+import java.util.List;
+
 import com.smefinance.todo.contants.TaskStatus;
 import com.smefinance.todo.entities.TodoTask;
 
@@ -12,5 +14,7 @@ public interface TodoTaskService {
 	void delete(TodoTask todoTask);
 
 	TodoTask saveWithTaskStatus(TodoTask todoTask, TaskStatus taskStatus);
+
+	List<TodoTask> getAllBy(TaskStatus status);
 
 }

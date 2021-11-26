@@ -1,5 +1,8 @@
 package com.smefinance.todo.dtos.mapper.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,4 +37,8 @@ public class TodoTaskMapperImpl implements TodoTaskMapper {
 		return this.modelMapperStrict.map(entity, TodoTaskResponse.class);
 	}
 	
+	@Override
+	public List<TodoTaskResponse> getResponses(final List<TodoTask> entities) {
+		return entities.stream().map(this::getResponse).collect(Collectors.toList());
+	}
 }

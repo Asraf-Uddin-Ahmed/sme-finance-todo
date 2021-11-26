@@ -1,5 +1,6 @@
 package com.smefinance.todo.services.imp;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,10 @@ public class TodoTaskServiceImpl implements TodoTaskService {
 		todoTask.setDeleted(true);
 		this.todoTaskRepository.save(todoTask);
 	}
+	
+	@Override
+	public List<TodoTask> getAllBy(TaskStatus status) {
+		return this.todoTaskRepository.findAllBy(status);
+	}
+	
 }

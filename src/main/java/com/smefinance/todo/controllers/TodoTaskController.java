@@ -1,5 +1,7 @@
 package com.smefinance.todo.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -63,4 +66,11 @@ public class TodoTaskController {
 		this.todoTaskService.delete(todoTask);
 		return this.todoTaskMapper.getResponse(todoTask);
 	}
+	
+	@GetMapping("")
+	public List<TodoTaskResponse> getAllTodoTasks(@RequestParam(value = "status", required = false) TaskStatus status) {
+		List<TodoTask> todoTasks = this.todoTaskService.getAllBy(status);
+		return this.todoTaskMapper.getResponses(todoTasks);
+	}
+
 }
