@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smefinance.todo.contants.TaskStatus;
 import com.smefinance.todo.dtos.mapper.TodoTaskMapper;
 import com.smefinance.todo.dtos.request.TodoTaskRequest;
 import com.smefinance.todo.dtos.response.TodoTaskResponse;
@@ -37,7 +38,7 @@ public class TodoTaskController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public TodoTaskResponse createTodoTask(@RequestBody @Valid TodoTaskRequest request) {
 		TodoTask todoTask = this.todoTaskMapper.getEntity(request);
-		todoTask = this.todoTaskService.create(todoTask);
+		todoTask = this.todoTaskService.saveWithTaskStatus(todoTask, TaskStatus.TODO);
 		return this.todoTaskMapper.getResponse(todoTask);
 	}
 
@@ -46,6 +47,13 @@ public class TodoTaskController {
 		TodoTask todoTask = this.todoTaskService.getById(id);
 		this.todoTaskMapper.loadEntity(request, todoTask);
 		todoTask = this.todoTaskService.save(todoTask);
+		return this.todoTaskMapper.getResponse(todoTask);
+	}
+	
+	@PutMapping("/{id}/done")
+	public TodoTaskResponse makeTodoTaskToDone(@PathVariable int id) {
+		TodoTask todoTask = this.todoTaskService.getById(id);
+		todoTask = this.todoTaskService.saveWithTaskStatus(todoTask, TaskStatus.DONE);
 		return this.todoTaskMapper.getResponse(todoTask);
 	}
 	

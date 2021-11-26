@@ -24,8 +24,8 @@ public class TodoTaskServiceImpl implements TodoTaskService {
 	}
 
 	@Override
-	public TodoTask create(TodoTask todoTask) {
-		todoTask.setStatus(TaskStatus.TODO);
+	public TodoTask saveWithTaskStatus(TodoTask todoTask, TaskStatus taskStatus) {
+		todoTask.setStatus(taskStatus);
 		return this.todoTaskRepository.save(todoTask);
 	}
 

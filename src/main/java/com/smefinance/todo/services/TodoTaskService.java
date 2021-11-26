@@ -1,5 +1,6 @@
 package com.smefinance.todo.services;
 
+import com.smefinance.todo.contants.TaskStatus;
 import com.smefinance.todo.entities.TodoTask;
 
 public interface TodoTaskService {
@@ -10,6 +11,6 @@ public interface TodoTaskService {
 
 	void delete(TodoTask todoTask);
 
-	TodoTask create(TodoTask todoTask);
+	TodoTask saveWithTaskStatus(TodoTask todoTask, TaskStatus taskStatus);
 
 }
