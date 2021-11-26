@@ -44,7 +44,7 @@ public class TodoTask {
 	private TaskStatus status;
 	
 	@Column(name = "is_deleted", nullable = false)
-	private byte isDeleted;
+	private boolean isDeleted;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", nullable = false, length = 19)
