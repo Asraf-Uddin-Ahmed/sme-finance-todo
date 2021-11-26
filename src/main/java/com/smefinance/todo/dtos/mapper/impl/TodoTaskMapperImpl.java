@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.smefinance.todo.dtos.mapper.TodoTaskMapper;
 import com.smefinance.todo.dtos.request.TodoTaskRequest;
+import com.smefinance.todo.dtos.response.TodoTaskResponse;
 import com.smefinance.todo.entities.TodoTask;
 
 @Component
@@ -22,4 +23,10 @@ public class TodoTaskMapperImpl implements TodoTaskMapper {
 	public TodoTask getEntity(final TodoTaskRequest request) {
 		return this.modelMapperStrict.map(request, TodoTask.class);
 	}
+	
+	@Override
+	public TodoTaskResponse getResponse(final TodoTask entity) {
+		return this.modelMapperStrict.map(entity, TodoTaskResponse.class);
+	}
+	
 }

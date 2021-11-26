@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smefinance.todo.dtos.mapper.TodoTaskMapper;
 import com.smefinance.todo.dtos.request.TodoTaskRequest;
+import com.smefinance.todo.dtos.response.TodoTaskResponse;
 import com.smefinance.todo.entities.TodoTask;
 import com.smefinance.todo.services.TodoTaskService;
 
@@ -33,9 +34,10 @@ public class TodoTaskController {
 	
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public TodoTask saveTodoTask(@RequestBody @Valid TodoTaskRequest request) {
+	public TodoTaskResponse saveTodoTask(@RequestBody @Valid TodoTaskRequest request) {
 		TodoTask todoTask = this.todoTaskMapper.getEntity(request);
-		return this.todoTaskService.save(todoTask);
+		todoTask = this.todoTaskService.save(todoTask);
+		return this.todoTaskMapper.getResponse(todoTask);
 	}
 
 }
