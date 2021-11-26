@@ -1,0 +1,3 @@
+ALTER TABLE `todo_task` 
+CHANGE COLUMN `title` `title` VARCHAR(1000) CHARACTER SET 'utf8mb4' NOT NULL ,
+CHANGE COLUMN `description` `description` TEXT CHARACTER SET 'utf8mb4' NULL DEFAULT NULL ;
