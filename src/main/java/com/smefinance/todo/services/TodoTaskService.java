@@ -8,4 +8,8 @@ public interface TodoTaskService {
 
 	TodoTask getById(Integer id);
 
+	void delete(TodoTask todoTask);
+
+	TodoTask create(TodoTask todoTask);
+
 }

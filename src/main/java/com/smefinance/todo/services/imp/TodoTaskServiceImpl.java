@@ -24,17 +24,32 @@ public class TodoTaskServiceImpl implements TodoTaskService {
 	}
 
 	@Override
-	public TodoTask save(TodoTask todoTask) {
+	public TodoTask create(TodoTask todoTask) {
 		todoTask.setStatus(TaskStatus.TODO);
+		return this.todoTaskRepository.save(todoTask);
+	}
+
+	@Override
+	public TodoTask save(TodoTask todoTask) {
 		return this.todoTaskRepository.save(todoTask);
 	}
 
 	@Override
 	public TodoTask getById(Integer id) {
 		try {
-			return todoTaskRepository.findById(id).get();
+			TodoTask todoTask = todoTaskRepository.findByIdAndIsDeletedFalse(id);
+			if(todoTask == null) {
+				return ExceptionPreconditions.entityNotFound(TodoTask.class, "id", id.toString());	
+			}
+			return todoTask;
 		} catch (NoSuchElementException nseex) {
 			return ExceptionPreconditions.entityNotFound(TodoTask.class, "id", id.toString());
 		}
+	}
+	
+	@Override
+	public void delete(TodoTask todoTask) {
+		todoTask.setDeleted(true);
+		this.todoTaskRepository.save(todoTask);
 	}
 }
