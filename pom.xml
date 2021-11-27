@@ -11,6 +11,8 @@
 	<groupId>com.smefinance</groupId>
 	<artifactId>sme-finance-todo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	
 	<name>sme-finance-todo</name>
 	<description>TODO List REST API for SME Finance</description>
 	<properties>
