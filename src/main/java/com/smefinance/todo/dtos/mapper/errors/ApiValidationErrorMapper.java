@@ -12,15 +12,10 @@ import com.smefinance.todo.dtos.response.errors.ApiValidationErrorResponseDto;
 
 public interface ApiValidationErrorMapper {
 
-	ApiValidationErrorResponseDto getApiValidationError(ConstraintViolation<?> constraintViolation);
+    List<ApiValidationErrorResponseDto> getApiValidationErrors(Set<ConstraintViolation<?>> constraintViolations);
 
-	List<ApiValidationErrorResponseDto> getApiValidationErrors(Set<ConstraintViolation<?>> constraintViolations);
+    ApiValidationErrorResponseDto getApiValidationError(FieldError fieldError);
 
-	List<ApiValidationErrorResponseDto> getApiValidationErrorsOfType(
-			Set<ConstraintViolation<Object>> constraintViolations);
-
-	ApiValidationErrorResponseDto getApiValidationError(FieldError fieldError);
-
-	ApiValidationErrorResponseDto getApiValidationError(ObjectError objectError);
+    ApiValidationErrorResponseDto getApiValidationError(ObjectError objectError);
 
 }

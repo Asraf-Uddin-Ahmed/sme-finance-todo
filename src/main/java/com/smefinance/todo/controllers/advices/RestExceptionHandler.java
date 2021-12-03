@@ -3,7 +3,6 @@ package com.smefinance.todo.controllers.advices;
 import com.smefinance.todo.contants.ErrorCode;
 import com.smefinance.todo.dtos.mapper.errors.ApiErrorMapper;
 import com.smefinance.todo.dtos.response.errors.ApiErrorResponseDto;
-import com.smefinance.todo.exception.DuplicateResourceFoundException;
 import com.smefinance.todo.exception.ResourceNotFoundException;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.exception.ConstraintViolationException;
@@ -101,14 +100,6 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-
-    @ExceptionHandler(DuplicateResourceFoundException.class)
-    protected ResponseEntity<Object> handleDuplicateResourceFoundException(DuplicateResourceFoundException ex) {
-        log.error(ex.getClass().getSimpleName() + " - ", ex);
-        ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.CONFLICT)
-                .setMessageByErrorCode(ErrorCode.EXCEPTION_RESOURCE_DUPLICATE_FOUND).setDebugMessage(ex).build();
-        return buildResponseEntity(apiError);
-    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     protected ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {

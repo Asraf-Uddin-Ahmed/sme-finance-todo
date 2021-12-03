@@ -19,39 +19,34 @@ import com.smefinance.todo.services.MessageSourceService;
 @Component
 public class ApiValidationErrorMapperImpl implements ApiValidationErrorMapper {
 
-	private final MessageSourceService messageSourceService;
+    private final MessageSourceService messageSourceService;
 
-	@Autowired
-	protected ApiValidationErrorMapperImpl(MessageSourceService messageSourceService) {
-		this.messageSourceService = messageSourceService;
-	}
+    @Autowired
+    protected ApiValidationErrorMapperImpl(MessageSourceService messageSourceService) {
+        this.messageSourceService = messageSourceService;
+    }
 
-	public ApiValidationErrorResponseDto getApiValidationError(ConstraintViolation<?> constraintViolation) {
-		return new ApiValidationErrorResponseDto(constraintViolation.getRootBeanClass().getSimpleName(),
-				((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().asString(),
-				constraintViolation.getInvalidValue(), constraintViolation.getMessage(),
-				messageSourceService.getMessage(constraintViolation.getMessage()));
-	}
+    private ApiValidationErrorResponseDto getApiValidationError(ConstraintViolation<?> constraintViolation) {
+        return new ApiValidationErrorResponseDto(constraintViolation.getRootBeanClass().getSimpleName(),
+                ((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().asString(),
+                constraintViolation.getInvalidValue(), constraintViolation.getMessage(),
+                messageSourceService.getMessage(constraintViolation.getMessage()));
+    }
 
-	public List<ApiValidationErrorResponseDto> getApiValidationErrors(
-			Set<ConstraintViolation<?>> constraintViolations) {
-		return constraintViolations.stream().map(this::getApiValidationError).collect(Collectors.toList());
-	}
+    public List<ApiValidationErrorResponseDto> getApiValidationErrors(
+            Set<ConstraintViolation<?>> constraintViolations) {
+        return constraintViolations.stream().map(this::getApiValidationError).collect(Collectors.toList());
+    }
 
-	public List<ApiValidationErrorResponseDto> getApiValidationErrorsOfType(
-			Set<ConstraintViolation<Object>> constraintViolations) {
-		return constraintViolations.stream().map(this::getApiValidationError).collect(Collectors.toList());
-	}
+    public ApiValidationErrorResponseDto getApiValidationError(FieldError fieldError) {
+        return new ApiValidationErrorResponseDto(fieldError.getObjectName(), fieldError.getField(),
+                fieldError.getRejectedValue(), fieldError.getCode(),
+                messageSourceService.getMessage(fieldError.getCode()));
+    }
 
-	public ApiValidationErrorResponseDto getApiValidationError(FieldError fieldError) {
-		return new ApiValidationErrorResponseDto(fieldError.getObjectName(), fieldError.getField(),
-				fieldError.getRejectedValue(), fieldError.getCode(),
-				messageSourceService.getMessage(fieldError.getCode()));
-	}
-
-	public ApiValidationErrorResponseDto getApiValidationError(ObjectError objectError) {
-		return new ApiValidationErrorResponseDto(objectError.getObjectName(), objectError.getCode(),
-				messageSourceService.getMessage(objectError.getCode()));
-	}
+    public ApiValidationErrorResponseDto getApiValidationError(ObjectError objectError) {
+        return new ApiValidationErrorResponseDto(objectError.getObjectName(), objectError.getCode(),
+                messageSourceService.getMessage(objectError.getCode()));
+    }
 
 }

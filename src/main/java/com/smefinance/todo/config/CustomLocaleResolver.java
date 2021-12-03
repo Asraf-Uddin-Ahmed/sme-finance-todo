@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Configuration
-public class CustomLocaleResolver extends AcceptHeaderLocaleResolver {
+class CustomLocaleResolver extends AcceptHeaderLocaleResolver {
 
     private final List<Locale> locales = Collections.singletonList(new Locale("en"));
 
