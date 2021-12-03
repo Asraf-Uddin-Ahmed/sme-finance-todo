@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todo-tasks")
-public class TodoTaskController {
+class TodoTaskController {
 
     private final TodoTaskService todoTaskService;
     private final TodoTaskMapper todoTaskMapper;

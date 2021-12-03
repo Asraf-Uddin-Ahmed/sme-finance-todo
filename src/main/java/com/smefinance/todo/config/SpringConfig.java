@@ -7,18 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
-public class SpringConfig {
+class SpringConfig {
 
-	@Bean
-	@Scope(value = "prototype")
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
-	
-	@Bean
+    @Bean
     @Scope(value = "prototype")
     public ModelMapper modelMapperStrict() {
-        final ModelMapper modelMapper = modelMapper();
+        final ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
     }
