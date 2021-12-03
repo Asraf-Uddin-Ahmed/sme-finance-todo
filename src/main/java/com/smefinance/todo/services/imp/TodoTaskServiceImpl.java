@@ -43,7 +43,7 @@ public class TodoTaskServiceImpl implements TodoTaskService {
                 return ExceptionPreconditions.entityNotFound(TodoTask.class, "id", id.toString());
             }
             return todoTask;
-        } catch (NoSuchElementException nseex) {
+        } catch (NoSuchElementException ex) {
             return ExceptionPreconditions.entityNotFound(TodoTask.class, "id", id.toString());
         }
     }
