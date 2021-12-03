@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 @Service
 public class TodoTaskServiceImpl implements TodoTaskService {
 
-    private TodoTaskRepository todoTaskRepository;
+    private final TodoTaskRepository todoTaskRepository;
 
     @Autowired
     public TodoTaskServiceImpl(TodoTaskRepository todoTaskRepository) {
