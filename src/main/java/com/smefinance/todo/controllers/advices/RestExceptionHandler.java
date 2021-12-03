@@ -48,7 +48,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
                                                                           HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         return buildResponseEntity(this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.BAD_REQUEST)
-                .setMessageByErrorCode(ErrorCode.HttpError.MissingServletRequestParameter, ex.getParameterName())
+                .setMessageByErrorCode(ErrorCode.HTTP_ERROR_MISSING_SERVLET_REQUEST_PARAMETER, ex.getParameterName())
                 .setDebugMessage(ex).build());
     }
 
@@ -57,7 +57,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
                                                                      HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         return buildResponseEntity(this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-                .setMessageByErrorCode(ErrorCode.HttpError.MissingServletRequestParameter, ex.getContentType(),
+                .setMessageByErrorCode(ErrorCode.HTTP_ERROR_MISSING_SERVLET_REQUEST_PARAMETER, ex.getContentType(),
                         ex.getSupportedMediaTypes().toString())
                 .setDebugMessage(ex).build());
     }
@@ -81,7 +81,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 servletWebRequest.getRequest().getServletPath()));
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         return buildResponseEntity(this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.BAD_REQUEST)
-                .setDebugMessage(ex).setMessageByErrorCode(ErrorCode.HttpError.Message.NOT_READABLE).build());
+                .setDebugMessage(ex).setMessageByErrorCode(ErrorCode.HTTP_ERROR_MESSAGE_NOT_READABLE).build());
     }
 
     @Override
@@ -89,7 +89,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         return buildResponseEntity(this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-                .setDebugMessage(ex).setMessageByErrorCode(ErrorCode.HttpError.Message.NOT_WRITABLE).build());
+                .setDebugMessage(ex).setMessageByErrorCode(ErrorCode.HTTP_ERROR_MESSAGE_NOT_WRITABLE).build());
     }
 
 
@@ -106,7 +106,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleDuplicateResourceFoundException(DuplicateResourceFoundException ex) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.CONFLICT)
-                .setMessageByErrorCode(ErrorCode.Exception.Resource.DuplicateFound.VALUE).setDebugMessage(ex).build();
+                .setMessageByErrorCode(ErrorCode.EXCEPTION_RESOURCE_DUPLICATE_FOUND).setDebugMessage(ex).build();
         return buildResponseEntity(apiError);
     }
 
@@ -114,7 +114,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.NOT_FOUND)
-                .setMessageByErrorCode(ErrorCode.Exception.Resource.NotFound.VALUE).setDebugMessage(ex).build();
+                .setMessageByErrorCode(ErrorCode.EXCEPTION_RESOURCE_NOT_FOUND).setDebugMessage(ex).build();
         return buildResponseEntity(apiError);
     }
 
@@ -122,7 +122,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.NOT_FOUND)
-                .setMessageByErrorCode(ErrorCode.Exception.Resource.NotFound.VALUE).setDebugMessage(ex).build();
+                .setMessageByErrorCode(ErrorCode.EXCEPTION_RESOURCE_NOT_FOUND).setDebugMessage(ex).build();
         return buildResponseEntity(apiError);
     }
 
@@ -130,7 +130,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleNoSuchElement(NoSuchElementException ex) {
         log.error(ex.getClass().getSimpleName() + " - ", ex);
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.NOT_FOUND)
-                .setMessageByErrorCode(ErrorCode.Exception.Resource.NotFound.VALUE).setDebugMessage(ex).build();
+                .setMessageByErrorCode(ErrorCode.EXCEPTION_RESOURCE_NOT_FOUND).setDebugMessage(ex).build();
         return buildResponseEntity(apiError);
     }
 
@@ -140,18 +140,18 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
         log.error(ex.getClass().getSimpleName() + " : " + request.getContextPath() + " - ", ex);
         if (ex.getCause() instanceof ConstraintViolationException) {
             ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.BAD_REQUEST)
-                    .setMessageByErrorCode(ErrorCode.Exception.DataIntegrityViolation.CONSTRAINT_VIOLATION)
+                    .setMessageByErrorCode(ErrorCode.EXCEPTION_DATA_INTEGRITY_VIOLATION_CONSTRAINT_VIOLATION)
                     .setDebugMessage(ex.getCause()).build();
             return buildResponseEntity(apiError);
         }
         if (ex.getCause() instanceof EntityExistsException) {
             ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.CONFLICT)
-                    .setMessageByErrorCode(ErrorCode.Exception.Resource.DuplicateFound.VALUE)
+                    .setMessageByErrorCode(ErrorCode.EXCEPTION_RESOURCE_DUPLICATE_FOUND)
                     .setDebugMessage(ex.getCause()).build();
             return buildResponseEntity(apiError);
         }
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-                .setMessageByErrorCode(ErrorCode.Exception.DataIntegrityViolation.VALUE).setDebugMessage(ex).build();
+                .setMessageByErrorCode(ErrorCode.EXCEPTION_DATA_INTEGRITY_VIOLATION).setDebugMessage(ex).build();
         return buildResponseEntity(apiError);
     }
 
@@ -161,7 +161,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
         log.error(ex.getClass().getSimpleName() + " : " + request.getContextPath() + " - ", ex);
         Class<?> clazz = ex.getRequiredType();
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.BAD_REQUEST)
-                .setMessageByErrorCode(ErrorCode.Exception.MethodArgumentTypeMismatch.VALUE, ex.getName(),
+                .setMessageByErrorCode(ErrorCode.EXCEPTION_METHOD_ARGUMENT_TYPE_MISMATCH, ex.getName(),
                         ex.getValue(), clazz == null ? null : clazz.getSimpleName())
                 .setDebugMessage(ex).build();
         return buildResponseEntity(apiError);
@@ -172,7 +172,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
         log.error(ex.getClass().getSimpleName() + " : " + request.getContextPath() + " - ", ex);
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.BAD_REQUEST)
                 .setDebugMessage(ex).build();
-        this.apiErrorMapper.setMessageByErrorCode(ErrorCode.Exception.IllegalArgument.VALUE);
+        this.apiErrorMapper.setMessageByErrorCode(ErrorCode.EXCEPTION_ILLEGAL_ARGUMENT);
         return buildResponseEntity(apiError);
     }
 
@@ -180,7 +180,7 @@ class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleException(RuntimeException ex, WebRequest request) {
         log.error(ex.getClass().getSimpleName() + " : " + request.getContextPath() + " - ", ex);
         ApiErrorResponseDto apiError = this.apiErrorMapper.initResponseDto().setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-                .setMessageByErrorCode(ErrorCode.Exception.VALUE, ex.getClass().getSimpleName()).setDebugMessage(ex)
+                .setMessageByErrorCode(ErrorCode.EXCEPTION, ex.getClass().getSimpleName()).setDebugMessage(ex)
                 .build();
         return buildResponseEntity(apiError);
     }

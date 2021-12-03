@@ -3,78 +3,19 @@ package com.smefinance.todo.contants;
 
 public class ErrorCode {
 
-	/*
-	 * Request and Response error
-	 */
-	public static final class HttpError {
-		private static final String VALUE = "httperror";
-		public static final String MissingServletRequestParameter = "missingservletrequestparameter";
-		public static final String HttpMediaTypeNotSupported = "httpmediatypenotsupported";
-		
-		public static final class Message {
-			private static final String VALUE = HttpError.VALUE + ".message";
-			public static final String NOT_READABLE = Message.VALUE + ".notreadable";
-			public static final String NOT_WRITABLE = Message.VALUE + ".notwritable";
-		}
-	}
+    public static final String HTTP_ERROR_MISSING_SERVLET_REQUEST_PARAMETER = "httperror.missingservletrequestparameter";
+    public static final String HTTP_ERROR_MESSAGE_NOT_READABLE = "httperror.message.notreadable";
+    public static final String HTTP_ERROR_MESSAGE_NOT_WRITABLE = "httperror.message.notwritable";
 
-	/*
-	 * Service and Repository layer exception
-	 */
-	public static final class Exception {
-		public static final String VALUE = "exception";
+    public static final String EXCEPTION = "exception";
+    public static final String EXCEPTION_RESOURCE_DUPLICATE_FOUND = "exception.resource.duplicatefound";
+    public static final String EXCEPTION_RESOURCE_DUPLICATE_FOUND_INVALID_ENTRIES = "exception.resource.duplicatefound.invalid.entries";
+    public static final String EXCEPTION_RESOURCE_NOT_FOUND = "exception.resource.notfound";
+    public static final String EXCEPTION_DATA_INTEGRITY_VIOLATION = "exception.dataintegrityviolation";
+    public static final String EXCEPTION_DATA_INTEGRITY_VIOLATION_CONSTRAINT_VIOLATION = "exception.dataintegrityviolation.constraintviolation";
+    public static final String EXCEPTION_METHOD_ARGUMENT_TYPE_MISMATCH = "exception.methodargumenttypemismatch";
+    public static final String EXCEPTION_ILLEGAL_ARGUMENT = "exception.illegalargument";
 
-		public static final class Messaging {
-			public static final String VALUE = Exception.VALUE + ".messaging";
-		}
-
-		public static final class Resource {
-			private static final String VALUE = Exception.VALUE + ".resource";
-
-			public static final class DuplicateFound {
-				public static final String VALUE = Resource.VALUE + ".duplicatefound";
-
-				public static final class Invalid {
-					private static final String VALUE = DuplicateFound.VALUE + ".invalid";
-					public static final String ENTRIES = Invalid.VALUE + ".entries";
-				}
-			}
-
-			public static final class NotFound {
-				public static final String VALUE = Resource.VALUE + ".notfound";
-
-				public static final class Invalid {
-					private static final String VALUE = NotFound.VALUE + ".invalid";
-					public static final String ENTRIES = Invalid.VALUE + ".entries";
-				}
-			}
-		}
-
-		public static final class DataIntegrityViolation {
-			public static final String VALUE = Exception.VALUE + ".dataintegrityviolation";
-			public static final String CONSTRAINT_VIOLATION = DataIntegrityViolation.VALUE + ".constraintviolation";
-		}
-
-		public static final class MethodArgumentTypeMismatch {
-			public static final String VALUE = Exception.VALUE + ".methodargumenttypemismatch";
-		}
-
-		public static final class IllegalArgument {
-			public static final String VALUE = Exception.VALUE + ".illegalargument";
-			public static final String ENUM = IllegalArgument.VALUE + ".enum";
-		}
-
-		public static final class AccessDenied {
-			public static final String VALUE = Exception.VALUE + ".accessdenied";
-		}
-	}
-
-	/*
-	 * Validation error
-	 */
-	public static final class Validation {
-		private static final String VALUE = "validation";
-		public static final String ERROR = Validation.VALUE + ".error";
-	}
+    public static final String VALIDATION_ERROR = "validation.error";
 
 }

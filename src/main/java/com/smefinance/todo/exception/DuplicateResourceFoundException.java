@@ -23,7 +23,7 @@ public class DuplicateResourceFoundException extends RuntimeException {
 
     private static Map<String, String> toMap(String... entries) {
         if (entries.length % 2 == 1)
-            throw new IllegalArgumentException(ErrorCode.Exception.Resource.DuplicateFound.Invalid.ENTRIES);
+            throw new IllegalArgumentException(ErrorCode.EXCEPTION_RESOURCE_DUPLICATE_FOUND_INVALID_ENTRIES);
         return IntStream.range(0, entries.length / 2).map(i -> i * 2).collect(HashMap::new,
                 (m, i) -> m.put(entries[i], entries[i + 1]), Map::putAll);
     }

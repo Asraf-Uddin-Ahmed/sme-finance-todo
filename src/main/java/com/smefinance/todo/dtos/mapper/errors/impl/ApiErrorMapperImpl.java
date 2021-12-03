@@ -33,8 +33,8 @@ public class ApiErrorMapperImpl implements ApiErrorMapper {
 
 	public ApiErrorMapper initDefaultValidationError() {
 		this.apiErrorResponseDto.setStatus(HttpStatus.BAD_REQUEST);
-		this.apiErrorResponseDto.setErrorCode(ErrorCode.Validation.ERROR);
-		this.apiErrorResponseDto.setMessage(messageSourceService.getMessage(ErrorCode.Validation.ERROR));
+		this.apiErrorResponseDto.setErrorCode(ErrorCode.VALIDATION_ERROR);
+		this.apiErrorResponseDto.setMessage(messageSourceService.getMessage(ErrorCode.VALIDATION_ERROR));
 		return this;
 	}
 
