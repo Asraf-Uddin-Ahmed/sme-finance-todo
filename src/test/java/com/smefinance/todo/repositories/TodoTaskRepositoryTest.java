@@ -1,7 +1,7 @@
 package com.smefinance.todo.repositories;
 
-import com.smefinance.todo.contants.PriorityType;
-import com.smefinance.todo.contants.TaskStatus;
+import com.smefinance.todo.constants.PriorityType;
+import com.smefinance.todo.constants.TaskStatus;
 import com.smefinance.todo.entities.TodoTask;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

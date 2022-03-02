@@ -1,6 +1,6 @@
 package com.smefinance.todo.exception;
 
-import com.smefinance.todo.contants.ErrorCode;
+import com.smefinance.todo.constants.ErrorCode;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;

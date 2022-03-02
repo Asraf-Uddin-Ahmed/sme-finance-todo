@@ -1,7 +1,7 @@
 package com.smefinance.todo.dtos.response;
 
-import com.smefinance.todo.contants.PriorityType;
-import com.smefinance.todo.contants.TaskStatus;
+import com.smefinance.todo.constants.PriorityType;
+import com.smefinance.todo.constants.TaskStatus;
 
 import lombok.Data;
 

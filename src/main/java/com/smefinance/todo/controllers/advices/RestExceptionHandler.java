@@ -1,6 +1,6 @@
 package com.smefinance.todo.controllers.advices;
 
-import com.smefinance.todo.contants.ErrorCode;
+import com.smefinance.todo.constants.ErrorCode;
 import com.smefinance.todo.dtos.mapper.errors.ApiErrorMapper;
 import com.smefinance.todo.dtos.response.errors.ApiErrorResponseDto;
 import com.smefinance.todo.exception.ResourceNotFoundException;

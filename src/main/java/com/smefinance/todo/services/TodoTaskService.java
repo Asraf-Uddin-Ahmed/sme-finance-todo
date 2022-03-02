@@ -2,7 +2,7 @@ package com.smefinance.todo.services;
 
 import java.util.List;
 
-import com.smefinance.todo.contants.TaskStatus;
+import com.smefinance.todo.constants.TaskStatus;
 import com.smefinance.todo.entities.TodoTask;
 
 public interface TodoTaskService {

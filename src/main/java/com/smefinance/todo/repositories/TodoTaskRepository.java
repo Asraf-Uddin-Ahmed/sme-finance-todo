@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.smefinance.todo.contants.TaskStatus;
+import com.smefinance.todo.constants.TaskStatus;
 import com.smefinance.todo.entities.TodoTask;
 
 @Repository

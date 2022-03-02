@@ -1,6 +1,6 @@
 package com.smefinance.todo.controllers;
 
-import com.smefinance.todo.contants.TaskStatus;
+import com.smefinance.todo.constants.TaskStatus;
 import com.smefinance.todo.dtos.mapper.TodoTaskMapper;
 import com.smefinance.todo.dtos.request.TodoTaskRequest;
 import com.smefinance.todo.dtos.response.TodoTaskResponse;

@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.smefinance.todo.contants.PriorityType;
+import com.smefinance.todo.constants.PriorityType;
 
 import lombok.Data;
 

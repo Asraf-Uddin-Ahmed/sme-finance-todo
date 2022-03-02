@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
-import com.smefinance.todo.contants.ErrorCode;
+import com.smefinance.todo.constants.ErrorCode;
 import com.smefinance.todo.dtos.mapper.errors.ApiErrorMapper;
 import com.smefinance.todo.dtos.mapper.errors.ApiValidationErrorMapper;
 import com.smefinance.todo.dtos.response.errors.ApiErrorResponseDto;
